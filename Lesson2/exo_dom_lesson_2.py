@@ -6,7 +6,6 @@ import re
 
 website_prefix = 'https://www.reuters.com/finance/stocks/financial-highlights/'
 companies_dict = {'Danone' : 'DANO.PA', 'LVMH': 'LVMH.PA', 'Airbus' : 'AIR.PA'}
-company_list = ['Danone', 'Airbus','LVMH']
 
 def _handle_request_and_get_soup(request_result):
     if request_result.status_code == 200:
@@ -61,7 +60,7 @@ def get_all_info(company_name):
 
 def main():
     df = _create_dataframe()
-    for company in company_list:
+    for company in companies_dict.keys():
         df.loc[company] = [company] + get_all_info(company)
     print(df)
 if __name__ == '__main__':
